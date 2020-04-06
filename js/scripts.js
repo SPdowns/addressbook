@@ -46,15 +46,22 @@ function Contact(firstName, lastName, phoneNumber) {
 Contact.prototype.fullName = function() {
   return this.firstName + " " + this.lastName;
 }
+function add(a,b){ return a+b}
 
 //front end
 $(document).ready(function(){
   let adressbook = new AddressBook();
-  $("#add-contact").submit(function(event)){
+  $("#add-contact").submit(function(event){
     event.preventDefault();
     let first =$('#first').val()
-    let middle =$('#middle').val()
+    let phone =$('#middle').val()
     let last =$('#last').val()
-
-  }
+    console.log('adress before: ', adressbook)
+    let newContact = new Contact(first,last,phone)
+    adressbook.addContact(newContact);
+    $('#contacts').empty();
+   adressbook.contacts.forEach(function(person){
+     $('#contacts').append(`<li> name :${person.fullName()} phone: ${person.phoneNumber}</li>`)
+   })
+  })
 })
