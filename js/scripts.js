@@ -60,7 +60,7 @@ $(document).ready(function(){
     let last =$('#last').val()
     console.log('miss before: ', missbook)
     let newContact = new Contact(first,last,phone)
-    missbook.addContact(newContact);
+     missbook.addContact(newContact);
     $('#contacts').empty();
     missbook.contacts.forEach(function(person){
      $('#contacts').append(`<li> name :${person.fullName()} phone: ${person.phoneNumber}</li>`)
