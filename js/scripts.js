@@ -2,6 +2,7 @@
 function AddressBook() {
   this.contacts = [];
   this.currentId = 0;
+
 }
 
 AddressBook.prototype.addContact = function(contact) {
@@ -46,21 +47,22 @@ function Contact(firstName, lastName, phoneNumber) {
 Contact.prototype.fullName = function() {
   return this.firstName + " " + this.lastName;
 }
-function add(a,b){ return a+b}
 
 //front end
 $(document).ready(function(){
-  let adressbook = new AddressBook();
+  let missbook = new AddressBook();
+  let sound = new Audio('https://freesound.org/data/previews/17/17904_65748-lq.mp3')
   $("#add-contact").submit(function(event){
     event.preventDefault();
+    sound.play();
     let first =$('#first').val()
     let phone =$('#middle').val()
     let last =$('#last').val()
-    console.log('adress before: ', adressbook)
+    console.log('miss before: ', missbook)
     let newContact = new Contact(first,last,phone)
-    adressbook.addContact(newContact);
+    missbook.addContact(newContact);
     $('#contacts').empty();
-   adressbook.contacts.forEach(function(person){
+    missbook.contacts.forEach(function(person){
      $('#contacts').append(`<li> name :${person.fullName()} phone: ${person.phoneNumber}</li>`)
    })
   })
