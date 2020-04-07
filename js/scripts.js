@@ -60,13 +60,11 @@ $(document).ready(function(){
     var inputtedFirstName =$('#new-first-name').val()
     var inputtedLastName =$('#new-last-name').val()
     var inputtedPhoneNumber =$('#new-phone-number').val()
-    var newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber)
-    console.log('miss before: ', missbook)
-    var newContact = new Contact(first,last,phone)
-     missbook.addContact(newContact);
-    $('#contacts').empty();
-    missbook.contacts.forEach(function(person){
-     $('#contacts').append(`<li> name :${person.fullName()} phone: ${person.phoneNumber}</li>`)
+    var newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber);
+    addressBook.addContact(newContact);
+    // $('#contacts').empty();
+    // addressBook.contacts.forEach(function(person){
+    //  $('#contacts').append(`<li> name :${person.fullName()} phone: ${person.phoneNumber}</li>`)
    })
   })
 })
