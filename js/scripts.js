@@ -2,7 +2,6 @@
 function AddressBook() {
   this.contacts = [];
   this.currentId = 0;
-
 }
 
 AddressBook.prototype.addContact = function(contact) {
@@ -44,6 +43,7 @@ function Contact(firstName, lastName, phoneNumber) {
   this.lastName = lastName;
   this.phoneNumber = phoneNumber;
 }
+
 Contact.prototype.fullName = function() {
   return this.firstName + " " + this.lastName;
 }
@@ -51,30 +51,24 @@ Contact.prototype.fullName = function() {
 //front end
 var addressBook = new AddressBook();
 
-function displayContactDetails(addressBookToDisplay)
-  var contactList = $("#contacts");
+function displayContactDetails(addressBookToDisplay) {
+  var contactsList = $("ul#contacts");
   var htmlForContactInfo = "";
   addressBookToDisplay.contacts.forEach(function(contact) {
-    htmlForContactInfo += "<li id=" + contact.id + ">" + contact.firstName + " " contact.lastName + "</li>";
+    htmlForContactInfo += "<li id=" + contact.id + ">" + contact.firstName + " " + contact.lastName + "</li>";
   });
   contactsList.html(htmlForContactInfo);
 };
 
-$(document).ready(function(){
-  var addressBook = new AddressBook();
-  let sound = new Audio('https://freesound.org/data/previews/17/17904_65748-lq.mp3')
-  $("#new-contact").submit(function(event){
+$(document).ready(function() {
+  $("form#new-contact").submit(function(event) {
     event.preventDefault();
-    sound.play();
-    var inputtedFirstName =$('#new-first-name').val()
-    var inputtedLastName =$('#new-last-name').val()
-    var inputtedPhoneNumber =$('#new-phone-number').val()
+    var inputtedFirstName = $("input#new-first-name").val();
+    var inputtedLastName = $("input#new-last-name").val();
+    var inputtedPhoneNumber = $("input#new-phone-number").val();
     var newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber);
     addressBook.addContact(newContact);
-    console.log(addressBook.contacts);
-    // $('#contacts').empty();
-    // addressBook.contacts.forEach(function(person){
-    //  $('#contacts').append(`<li> name :${person.fullName()} phone: ${person.phoneNumber}</li>`)
-   })
+    console.log(addressBook.contacts)
+    displayContactDetails(addressBook);
   })
 })
