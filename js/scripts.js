@@ -59,6 +59,11 @@ function displayContactDetails(addressBookToDisplay) {
   });
   contactsList.html(htmlForContactInfo);
 };
+function attachContactListeners() {
+  $("ul#contacts").on("click", "li", function() {
+    console.log("The id of this <li> is " + this.id + ".");
+  });
+};
 
 $(document).ready(function() {
   attachContactListeners();
@@ -71,10 +76,6 @@ $(document).ready(function() {
     addressBook.addContact(newContact);
     console.log(addressBook.contacts)
     displayContactDetails(addressBook);
-    function attachContactListeners() {
-      $("ul#contacts").on("click", "li", function() {
-        console.log("The id of this <li> is " + this.id + ".");
-      });
-    };
+    
   })
 })
