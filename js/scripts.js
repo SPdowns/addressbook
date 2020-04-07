@@ -51,10 +51,19 @@ Contact.prototype.fullName = function() {
 //front end
 var addressBook = new AddressBook();
 
+function displayContactDetails(addressBookToDisplay)
+  var contactList = $("#contacts");
+  var htmlForContactInfo = "";
+  addressBookToDisplay.contacts.forEach(function(contact) {
+    htmlForContactInfo += "<li id=" + contact.id + ">" + contact.firstName + " " contact.lastName + "</li>";
+  });
+  contactsList.html(htmlForContactInfo);
+};
+
 $(document).ready(function(){
   var addressBook = new AddressBook();
   let sound = new Audio('https://freesound.org/data/previews/17/17904_65748-lq.mp3')
-  $("#add-contact").submit(function(event){
+  $("#new-contact").submit(function(event){
     event.preventDefault();
     sound.play();
     var inputtedFirstName =$('#new-first-name').val()
@@ -62,6 +71,7 @@ $(document).ready(function(){
     var inputtedPhoneNumber =$('#new-phone-number').val()
     var newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber);
     addressBook.addContact(newContact);
+    console.log(addressBook.contacts);
     // $('#contacts').empty();
     // addressBook.contacts.forEach(function(person){
     //  $('#contacts').append(`<li> name :${person.fullName()} phone: ${person.phoneNumber}</li>`)
