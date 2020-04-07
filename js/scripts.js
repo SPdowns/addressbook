@@ -61,6 +61,7 @@ function displayContactDetails(addressBookToDisplay) {
 };
 
 $(document).ready(function() {
+  attachContactListeners();
   $("form#new-contact").submit(function(event) {
     event.preventDefault();
     var inputtedFirstName = $("input#new-first-name").val();
@@ -70,5 +71,10 @@ $(document).ready(function() {
     addressBook.addContact(newContact);
     console.log(addressBook.contacts)
     displayContactDetails(addressBook);
+    function attachContactListeners() {
+      $("ul#contacts").on("click", "li", function() {
+        console.log("The id of this <li> is " + this.id + ".");
+      });
+    };
   })
 })
