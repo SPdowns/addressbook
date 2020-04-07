@@ -49,17 +49,20 @@ Contact.prototype.fullName = function() {
 }
 
 //front end
+var addressBook = new AddressBook();
+
 $(document).ready(function(){
-  let missbook = new AddressBook();
+  var addressBook = new AddressBook();
   let sound = new Audio('https://freesound.org/data/previews/17/17904_65748-lq.mp3')
   $("#add-contact").submit(function(event){
     event.preventDefault();
     sound.play();
-    let first =$('#first').val()
-    let phone =$('#middle').val()
-    let last =$('#last').val()
+    var inputtedFirstName =$('#new-first-name').val()
+    var inputtedLastName =$('#new-last-name').val()
+    var inputtedPhoneNumber =$('#new-phone-number').val()
+    var newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber)
     console.log('miss before: ', missbook)
-    let newContact = new Contact(first,last,phone)
+    var newContact = new Contact(first,last,phone)
      missbook.addContact(newContact);
     $('#contacts').empty();
     missbook.contacts.forEach(function(person){
